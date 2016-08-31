@@ -5,19 +5,10 @@ import numpy as np
 class TestGradient(unittest.TestCase):
 
     def setUp(self):
-        self.grad = g.Gradient2D(0.15)
-
-    def testDerivative(self):
-        for x in range(10000):
-            self.assertEqual(self.grad.derivative('x1', x), 4*(x-2))
-            self.assertEqual(self.grad.derivative('x2', x), 4*(x-3))
-
-    def testD(self):
-        self.assertEqual(list(self.grad.d([0., 0.])), [8. , 12.])
+        self.grad = g.Gradient(0.25)
 
     def testDescent(self):
-        self.assertEqual(list(self.grad.descent()), [2., 3.])
-        
+        self.assertEqual(list(self.grad.descent()), [2.0, 3.0])
         
 if __name__ == '__main__':
     unittest.main()
