@@ -7,7 +7,6 @@ class Gradient():
     
     def __init__(self, alpha = 0.01, precision = 10**-6, X = np.array([[0.] , [0.]])):
          self.Xs = [] # Candidates
-         self.F = [] # Evaluations
          self.Xs.append(X) # Append first candidate (X0)
          self.alpha = alpha   # Learning rate
          self.precision = precision # Stop criteria
@@ -33,23 +32,22 @@ class Gradient():
             X = self.Xs[-1] + self.alpha*d
             self.Xs.append(X)
             d = - self.gradient(self.Xs[-1])
+        return self.Xs[-1]
 
-        # PLOTTING
+    def plot(self, title, xlabel, ylabel):
         x1s = []
         x2s = []
+        
         for X in self.Xs:
             x1s.append(X[0][0])
             x2s.append(X[1][0])
-        print('mock')
-        print('x1 =', x1s)
-        print('x2 =', x2s)
 
-        plt.plot(x1s, x2s, 'ro')
-        plt.xlabel('X1')
-        plt.ylabel('X2')
+        plt.plot(x1s, x2s, 'bo')
+        plt.title(title)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
         plt.show()
         
-        return self.Xs[-1]
 
         
          
