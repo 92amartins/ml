@@ -1,6 +1,7 @@
 import numpy as np
 from numpy import linalg as la
 import matplotlib.pyplot as plt
+import bisection as bis
 
 '''Gradient descent for 2-dimensions minimization'''
 class Gradient():
@@ -29,7 +30,8 @@ class Gradient():
 
         # Calculate new X and Update direction
         while la.norm(d) > self.precision:
-            X = self.Xs[-1] + self.alpha*d
+            ialpha = bis.getAlpha(self.Xs[-1], d) # Iteration alpha from bisection
+            X = self.Xs[-1] + ialpha*d
             self.Xs.append(X)
             d = - self.gradient(self.Xs[-1])
         return self.Xs[-1]

@@ -1,6 +1,7 @@
 import numpy as np
 from numpy import linalg as la
 import matplotlib.pyplot as plt
+import bisection as bis
 
 '''Conjugate for 2-dimensions minimization'''
 class Conjugate():
@@ -36,7 +37,8 @@ class Conjugate():
 
     ''' Calculates the optimal alpha for the iteration'''
     def alpha(self, d, H):
-        return np.dot(d.T, d) / np.dot(np.dot(d.T, H), d)
+        #return np.dot(d.T, d) / np.dot(np.dot(d.T, H), d)
+        return bis.getAlpha(self.Xs[-1], d)
 
     def beta(self, gT, H, d):
         # Calculates numerator
